@@ -1,4 +1,6 @@
 #include <iostream>
+#include "Queue.h"
+#include "Paciente.h"
 
 using namespace std;
 
