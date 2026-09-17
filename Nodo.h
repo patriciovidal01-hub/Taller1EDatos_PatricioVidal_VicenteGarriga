@@ -5,18 +5,24 @@
 #ifndef TALLER1EDATOS_PATRICIOVIDAL_VICENTEGARRIGA_NODO_H
 #define TALLER1EDATOS_PATRICIOVIDAL_VICENTEGARRIGA_NODO_H
 #include <iostream>
-#include "Paciente.h"
 
+template <typename T>
 class Nodo {
 private:
-    Paciente paciente;
-    Nodo* siguiente;
+    T dato;
+    Nodo<T>* siguiente;
 public:
-    Nodo(Paciente paciente);
-    ~Nodo();
-    void setSiguiente(Nodo* nodo) const;
-    Nodo* getSiguiente() const;
-    Paciente getPaciente() const;
+    Nodo(T dato): dato(dato), siguiente(nullptr) {}
+    ~Nodo(){}
+    void setSiguiente(Nodo* nodo) {
+        siguiente = nodo;
+    }
+    Nodo* getSiguiente() const {
+        return siguiente;
+    }
+    T getDato() const {
+        return dato;
+    }
 };
 
 #endif //TALLER1EDATOS_PATRICIOVIDAL_VICENTEGARRIGA_NODO_H

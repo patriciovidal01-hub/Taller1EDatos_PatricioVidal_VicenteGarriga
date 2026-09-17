@@ -14,17 +14,17 @@ class Paciente {
 
     private:
         int id;
-        string nombre;
+        std::string nombre;
         int edad;
-        string servicio;
+        std::string servicio;
     public:
-        Paciente(int id, string nombre, int edad, string servicio);
+        Paciente(int id, std::string nombre, int edad, std::string servicio);
         ~Paciente();
 
         int getId() const;
-        string getNombre() const;
+        std::string getNombre() const;
         int getEdad() const;
-        string getServicio() const;
+        std::string getServicio() const;
 
 };
 #endif //TALLER1EDATOS_PATRICIOVIDAL_VICENTEGARRIGA_PACIENTE_H

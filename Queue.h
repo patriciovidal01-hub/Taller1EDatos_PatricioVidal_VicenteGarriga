@@ -3,11 +3,17 @@
 //
 #ifndef TALLER1EDATOS_PATRICIOVIDAL_VICENTEGARRIGA_QUEUE_H
 #define TALLER1EDATOS_PATRICIOVIDAL_VICENTEGARRIGA_QUEUE_H
+#include "Nodo.h"
+#include "Paciente.h"
+
 class Queue {
-    
-
-
-
+private:
+    Nodo* cabeza;
+public:
+    Queue();
+    ~Queue();
+    void eliminarCabeza();
+    void agregarNodo(Nodo* nodo);
 };
 
 
