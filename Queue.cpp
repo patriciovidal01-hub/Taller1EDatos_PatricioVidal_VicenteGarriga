@@ -4,7 +4,6 @@
 
 #include "Queue.h"
 #include "Paciente.h"
-using std::string;
 
 Queue::Queue():cabeza(nullptr) {}
 Queue::~Queue() {
@@ -15,17 +14,17 @@ Queue::~Queue() {
 
 void Queue::eliminarCabeza() {
     if (cabeza != nullptr) {
-        Nodo* aux = cabeza;
+        Nodo<Paciente>* aux = cabeza;
         cabeza = cabeza->getSiguiente();
         delete aux;
     }
 }
 
-void Queue::agregarNodo(Nodo* nodo) {
+void Queue::agregarNodo(Nodo<Paciente>* nodo) {
     if (cabeza == nullptr) {
         cabeza = nodo;
     } else {
-        Nodo* aux = cabeza;
+        Nodo<Paciente>* aux = cabeza;
         while (aux->getSiguiente() != nullptr) {
             aux = aux->getSiguiente();
         }

@@ -5,6 +5,7 @@
 #include "Paciente.h"
 #include <iostream>
 #include <string>
+using std::string;
 
 Paciente:: Paciente(int id, string nombre, int edad, string servicio):
 id(id), nombre(nombre), edad(edad), servicio(servicio) {}

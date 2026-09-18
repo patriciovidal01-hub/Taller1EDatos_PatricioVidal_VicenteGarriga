@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Queue.h"
 #include "Paciente.h"
-
+#include "Nodo.h"
 using namespace std;
 
 int main() {

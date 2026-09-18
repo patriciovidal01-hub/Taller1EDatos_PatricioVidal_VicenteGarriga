@@ -8,12 +8,12 @@
 
 class Queue {
 private:
-    Nodo* cabeza;
+    Nodo<Paciente>* cabeza;
 public:
     Queue();
     ~Queue();
     void eliminarCabeza();
-    void agregarNodo(Nodo* nodo);
+    void agregarNodo(Nodo<Paciente>* nodo);
 };
 
 
