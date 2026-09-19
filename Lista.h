@@ -7,12 +7,13 @@
 #include <iostream>
 #include "Nodo.h"
 
+template <typename T>
 class Lista {
     protected:
         Nodo<T>* cabeza;
     public:
-        Lista(Nodo<T>* cabeza) : cabeza(cabeza) {}
-        virtual ~Lista(){}
+        Lista(Nodo<T>* cabeza) : cabeza(cabeza);
+        virtual ~Lista();
     
         Nodo<T>* getCabeza() {
             return cabeza;
@@ -20,10 +21,11 @@ class Lista {
 
         Nodo<T>* getUltimo() {
             if (cabeza != nullptr){
-                while (cabeza->getSiguiente() != nullptr) {
-                    cabeza = cabeza->getSiguiente();
+                Nodo<T>* ultimo = cabeza;
+                while (ultimo->getSiguiente() != nullptr) {
+                    ultimo = ultimo->getSiguiente();
                 }
-                return cabeza;
+                return ultimo;
             }
             return cabeza;
         }
