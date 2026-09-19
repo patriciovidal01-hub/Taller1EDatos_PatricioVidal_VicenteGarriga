@@ -11,7 +11,7 @@ class Servicio {
         std::string servicio;
         Lista_Pacientes pacientes;
     public:
-        Servicio(string servicio, Lista_Pacientes lista);
+        Servicio(std::string servicio, Lista_Pacientes lista);
         ~Servicio();
         std::string getServicio();
         Lista_Pacientes getPacientes();

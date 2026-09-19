@@ -10,8 +10,8 @@
 
 class Lista_Pacientes : public Lista<Paciente> {
     public:
-    Lista_Pacientes(Nodo<Paciente>* paciente);
-    virtual ~Lista_Pacientes();
+        Lista_Pacientes();
+        virtual ~Lista_Pacientes();
 };
 
 
