@@ -7,12 +7,12 @@
 #include <string>
 using std::string;
 
-Paciente:: Paciente(int id, string nombre, int edad, string servicio):
+Paciente:: Paciente(string id, string nombre, int edad, string servicio):
 id(id), nombre(nombre), edad(edad), servicio(servicio) {}
 
 Paciente::~Paciente() {}
 
-int Paciente::getId() const {
+string Paciente::getId() const {
     return id;
 }
 

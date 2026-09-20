@@ -13,6 +13,7 @@ class Lista_Servicios : public Lista<Servicio> {
     public:
         Lista_Servicios();
         virtual ~Lista_Servicios();
+        Nodo<Servicio>* encontrarServicio(std::string servicio);
 };
 
 

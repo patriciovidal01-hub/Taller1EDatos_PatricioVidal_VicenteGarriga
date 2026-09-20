@@ -15,6 +15,7 @@ public:
     void eliminarCabeza();
     void agregarNodo(Nodo<Paciente>* nodo);
     void mostrarPacientes() const;
+    Nodo<Paciente>* getCabeza() const;
 };
 
 

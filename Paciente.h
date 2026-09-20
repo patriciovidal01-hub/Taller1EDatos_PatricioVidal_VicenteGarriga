@@ -12,15 +12,15 @@
 class Paciente {
 
     private:
-        int id;
+        std::string id;
         std::string nombre;
         int edad;
         std::string servicio;
     public:
-        Paciente(int id, std::string nombre, int edad, std::string servicio);
+        Paciente(std::string id, std::string nombre, int edad, std::string servicio);
         ~Paciente();
 
-        int getId() const;
+        std::string getId() const;
         std::string getNombre() const;
         int getEdad() const;
         std::string getServicio() const;

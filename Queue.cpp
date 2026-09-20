@@ -38,13 +38,15 @@ void Queue::mostrarPacientes() const {
     Nodo<Paciente>* aux = cabeza;
     while (aux != nullptr) {
         Paciente paciente = aux->getDato();
-        cout << contador << ". - " << paciente.getNombre() << endl;
+        cout << contador << ". " << paciente.getId() << " - " << paciente.getNombre() << endl;
         contador += 1;
         aux = aux->getSiguiente();
     }
 }
 
-
+Nodo<Paciente>* Queue:: getCabeza() const {
+    return cabeza;
+}
 
 
 
