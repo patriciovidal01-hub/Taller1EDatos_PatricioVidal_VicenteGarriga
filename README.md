@@ -1,4 +1,4 @@
-# Proyecto
+# Taller 1 Estructura de Datos
 
 ## Autores
 - **Patricio Javier Vidal Veas** - 22.330.827-9 - [patriciovidal01-hub].
