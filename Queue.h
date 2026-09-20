@@ -16,6 +16,7 @@ public:
     void agregarNodo(Nodo<Paciente>* nodo);
     void mostrarPacientes() const;
     Nodo<Paciente>* getCabeza() const;
+    int cantidadPacientes() const;
 };
 
 

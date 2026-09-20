@@ -15,6 +15,8 @@ class Servicio {
         ~Servicio();
         std::string getServicio();
         Lista_Pacientes* getPacientes();
+        int getNumPacientes();
+        void mostrarPacientes();
 };
 
 

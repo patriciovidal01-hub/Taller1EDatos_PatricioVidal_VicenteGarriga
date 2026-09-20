@@ -52,38 +52,69 @@ void llenarServicios (Lista_Servicios* lista_servicios) {
 
 
 void atenderPacientes(Queue* colaPacientes, Lista_Servicios* lista_servicios) {
-    cout << " =========== Pacientes en espera =========== " << endl;
-    colaPacientes->mostrarPacientes();
+    if (colaPacientes->cantidadPacientes() != 0) {
+        cout << " =========== Pacientes en espera =========== " << endl;
+        colaPacientes->mostrarPacientes();
 
-    int numeroAtender;
+        int numeroAtender;
+        cout << endl;
+        cout << "Indique la cantidad de pacientes que desea atender" << endl;
+        cin >> numeroAtender;
+        while (cin.fail()) {
+            cout << "Opcion Invalida" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin >> numeroAtender;
+        }
+
+        cout << " =========== Atendiendo a pacientes =========== " << endl;
+
+        for (int i = 0; i < numeroAtender; i++) {
+            Nodo<Paciente>* nodo = colaPacientes->getCabeza();
+            Paciente p = nodo->getDato();
+            Nodo<Servicio>* servicioPaciente = lista_servicios->encontrarServicio(nodo->getDato().getServicio());
+            servicioPaciente->getDato().getPacientes()->agregarNodo(new Nodo<Paciente>(p));
+            colaPacientes->eliminarCabeza();
+
+            cout << "ID: " << p.getId() << endl;
+            cout << "Nombre: " << p.getNombre() << endl;
+            cout << "Edad: " << p.getEdad() << endl;
+            cout << "Servicio: " << p.getServicio() << endl;
+            cout << endl;
+            cout << "Paciente fue enviado a " << p.getServicio() << endl;
+
+        }
+    } else {
+        cout << "No hay pacientes para atender" << endl;
+        cout << endl;
+    }
+}
+
+void verDepartamentos(Lista_Servicios* lista_servicios){
+    Nodo<Servicio>* aux = lista_servicios->getCabeza();
+    int ctdServicios = lista_servicios->cantidadServicios();
+    for (int i = 0; i < ctdServicios; i++) {
+        cout << i+1 << ". " << aux->getDato().getServicio() << endl;
+        aux = aux->getSiguiente();
+    }
+    int opcion;
     cout << endl;
-    cout << "Indique la cantidad de pacientes que desea atender" << endl;
-    cin >> numeroAtender;
-    while (cin.fail()) {
+    cout << "Seleccionar opcion: ";
+    cin >> opcion;
+
+    while (cin.fail() || opcion > ctdServicios || opcion < 1 ) {
         cout << "Opcion Invalida" << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cin >> numeroAtender;
+        cin >> opcion;
     }
 
-    cout << " =========== Atendiendo a pacientes =========== " << endl;
+    Servicio servicioVer = lista_servicios->servicioNumero(opcion)->getDato();
 
-    for (int i = 0; i < numeroAtender; i++) {
-        Nodo<Paciente>* nodo = colaPacientes->getCabeza();
-        Paciente p = nodo->getDato();
-        Nodo<Servicio>* servicioPaciente = lista_servicios->encontrarServicio(nodo->getDato().getServicio());
-        servicioPaciente->getDato().getPacientes()->agregarNodo(new Nodo<Paciente>(p));
-        colaPacientes->eliminarCabeza();
-
-        cout << "ID: " << p.getId() << endl;
-        cout << "Nombre: " << p.getNombre() << endl;
-        cout << "Edad: " << p.getEdad() << endl;
-        cout << "Servicio: " << p.getServicio() << endl;
-        cout << endl;
-        cout << "Paciente fue enviado a " << p.getServicio() << endl;
-
-    }
-
+    cout << " =========== Estado " << servicioVer.getServicio() << " =========== " << endl;
+    cout << "Pacientes en el departamento de " << servicioVer.getServicio() << " es: "<< servicioVer.getNumPacientes() << endl;
+    servicioVer.mostrarPacientes();
+    cout << endl;
 }
 
 
@@ -108,7 +139,7 @@ int main() {
             atenderPacientes(colaPacientes, servicios);
 
         } else if (opcion == "2") {
-
+            verDepartamentos(servicios);
 
         } else if (opcion == "3") {
 

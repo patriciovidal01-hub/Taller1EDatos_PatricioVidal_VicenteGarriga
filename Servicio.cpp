@@ -15,3 +15,22 @@ string Servicio ::getServicio() {
 Lista_Pacientes* Servicio::getPacientes() {
     return pacientes;
 }
+
+int Servicio::getNumPacientes() {
+    Nodo<Paciente>* paciente = pacientes->getCabeza();
+    int contador = 0;
+    while (paciente != nullptr) {
+        paciente = paciente->getSiguiente();
+        contador++;
+    }
+    return contador;
+}
+
+void Servicio::mostrarPacientes() {
+    Nodo<Paciente>* aux = pacientes->getCabeza();
+    while (aux != nullptr) {
+        Paciente paciente = aux->getDato();
+        cout << paciente.getNombre() << "  (" << paciente.getEdad() << ") "<< endl;
+        aux = aux->getSiguiente();
+    }
+}

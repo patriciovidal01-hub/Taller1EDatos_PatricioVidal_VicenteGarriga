@@ -48,5 +48,14 @@ Nodo<Paciente>* Queue:: getCabeza() const {
     return cabeza;
 }
 
+int Queue:: cantidadPacientes() const {
+    Nodo<Paciente>* paciente = cabeza;
+    int contador = 0;
+    while (paciente != nullptr) {
+        paciente = paciente->getSiguiente();
+        contador++;
+    }
+    return contador;
+}
 
 

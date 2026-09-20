@@ -14,6 +14,8 @@ class Lista_Servicios : public Lista<Servicio> {
         Lista_Servicios();
         virtual ~Lista_Servicios();
         Nodo<Servicio>* encontrarServicio(std::string servicio);
+        Nodo<Servicio>* servicioNumero(int numeroServicio);
+        int cantidadServicios();
 };
 
 
