@@ -5,6 +5,10 @@
 #include "Queue.h"
 #include "Paciente.h"
 #include "Nodo.h"
+#include "Lista_Servicios.h"
+#include "Lista_Pacientes.h"
+#include <limits>
+
 using namespace std;
 
 void leerArchivo(Queue* colaPacientes ) {
@@ -36,13 +40,45 @@ void leerArchivo(Queue* colaPacientes ) {
     }
 }
 
+void llenarServicios (Lista_Servicios* lista_servicios) {
+    string servicios[8] = {"Urgencias", "Medicina General", "Cardiologia", "Neurologia",
+        "Traumatologia", "Cirugia", "Pediatria", "Hospitalizacion"};
+
+    for (string s : servicios) {
+        Lista_Pacientes* lista = new Lista_Pacientes();
+        Servicio servicio = Servicio(s, lista);
+        lista_servicios->agregarNodo(new Nodo<Servicio>(servicio));
+    }
+}
+
+
+void atenderPacientes(Queue* colaPacientes) {
+    cout << " =========== Pacientes en espera =========== " << endl;
+    colaPacientes->mostrarPacientes();
+
+    int numeroAtender;
+    cout << endl;
+    cout << "Indique la cantidad de pacientes que desea atender" << endl;
+    cin >> numeroAtender;
+    while (cin.fail()) {
+        cout << "Opcion Invalida" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> numeroAtender;
+    }
+}
+
+
 int main() {
     Queue* colaPacientes = new Queue();
     leerArchivo(colaPacientes);
+    Lista_Servicios* servicios = new Lista_Servicios();
+    llenarServicios(servicios);
+
     string opcion;
 
     do {
-        cout << " -------- Hospital Marmaja -------- " << endl;
+        cout << " =========== Hospital Marmaja =========== " << endl;
         cout << "1. Atender pacientes " << endl;
         cout << "2. Ver departamento " << endl;
         cout << "3. Revisar historial de atención " << endl;
@@ -51,7 +87,7 @@ int main() {
         cin >> opcion;
 
         if (opcion == "1") {
-
+            atenderPacientes(colaPacientes);
 
         } else if (opcion == "2") {
 
@@ -67,6 +103,7 @@ int main() {
         }
 
     } while (opcion != "4");
+    delete servicios;
     delete colaPacientes;
     return 0;
 }

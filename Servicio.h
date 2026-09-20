@@ -9,12 +9,12 @@
 class Servicio {
     private:
         std::string servicio;
-        Lista_Pacientes pacientes;
+        Lista_Pacientes* pacientes;
     public:
-        Servicio(std::string servicio, Lista_Pacientes lista);
+        Servicio(std::string servicio, Lista_Pacientes* lista);
         ~Servicio();
         std::string getServicio();
-        Lista_Pacientes getPacientes();
+        Lista_Pacientes* getPacientes();
 };
 
 

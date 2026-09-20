@@ -14,6 +14,7 @@ public:
     ~Queue();
     void eliminarCabeza();
     void agregarNodo(Nodo<Paciente>* nodo);
+    void mostrarPacientes() const;
 };
 
 

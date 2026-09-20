@@ -4,6 +4,7 @@
 
 #include "Queue.h"
 #include "Paciente.h"
+using namespace std;
 
 Queue::Queue():cabeza(nullptr) {}
 Queue::~Queue() {
@@ -31,6 +32,18 @@ void Queue::agregarNodo(Nodo<Paciente>* nodo) {
         aux->setSiguiente(nodo);
     }
 }
+
+void Queue::mostrarPacientes() const {
+    int contador = 1;
+    Nodo<Paciente>* aux = cabeza;
+    while (aux != nullptr) {
+        Paciente paciente = aux->getDato();
+        cout << contador << ". - " << paciente.getNombre() << endl;
+        contador += 1;
+        aux = aux->getSiguiente();
+    }
+}
+
 
 
 
