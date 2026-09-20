@@ -8,6 +8,7 @@
 #include "Lista_Servicios.h"
 #include "Lista_Pacientes.h"
 #include <limits>
+#include "Stack.h"
 
 using namespace std;
 
@@ -51,7 +52,7 @@ void llenarServicios (Lista_Servicios* lista_servicios) {
 }
 
 
-void atenderPacientes(Queue* colaPacientes, Lista_Servicios* lista_servicios) {
+void atenderPacientes(Queue* colaPacientes, Lista_Servicios* lista_servicios, Stack* historial) {
     if (colaPacientes->cantidadPacientes() != 0) {
         cout << " =========== Pacientes en espera =========== " << endl;
         colaPacientes->mostrarPacientes();
@@ -68,20 +69,30 @@ void atenderPacientes(Queue* colaPacientes, Lista_Servicios* lista_servicios) {
         }
 
         cout << " =========== Atendiendo a pacientes =========== " << endl;
-
+        if (numeroAtender > colaPacientes->cantidadPacientes()) {
+            numeroAtender = colaPacientes->cantidadPacientes();
+        }
         for (int i = 0; i < numeroAtender; i++) {
             Nodo<Paciente>* nodo = colaPacientes->getCabeza();
             Paciente p = nodo->getDato();
             Nodo<Servicio>* servicioPaciente = lista_servicios->encontrarServicio(nodo->getDato().getServicio());
-            servicioPaciente->getDato().getPacientes()->agregarNodo(new Nodo<Paciente>(p));
+            if (servicioPaciente != nullptr) {
+                servicioPaciente->getDato().getPacientes()->agregarNodo(new Nodo<Paciente>(p));
+                historial->push(new Nodo<Paciente>(p));
+            }
             colaPacientes->eliminarCabeza();
+
 
             cout << "ID: " << p.getId() << endl;
             cout << "Nombre: " << p.getNombre() << endl;
             cout << "Edad: " << p.getEdad() << endl;
             cout << "Servicio: " << p.getServicio() << endl;
             cout << endl;
-            cout << "Paciente fue enviado a " << p.getServicio() << endl;
+            if (servicioPaciente != nullptr) {
+                cout << "Paciente fue enviado a " << p.getServicio() << endl;
+            } else {
+                cout << "El servicio del paciente no existe" << endl;
+            }
 
         }
     } else {
@@ -117,12 +128,17 @@ void verDepartamentos(Lista_Servicios* lista_servicios){
     cout << endl;
 }
 
+void revisarHistorial(Stack* historial) {
+    cout << "=========== Historial de ultimas atenciones del hospital ===========" << endl;
+    historial->mostrarHistorial();
+}
 
 int main() {
     Queue* colaPacientes = new Queue();
     leerArchivo(colaPacientes);
     Lista_Servicios* servicios = new Lista_Servicios();
     llenarServicios(servicios);
+    Stack* historial = new Stack();
 
     string opcion;
 
@@ -136,15 +152,16 @@ int main() {
         cin >> opcion;
 
         if (opcion == "1") {
-            atenderPacientes(colaPacientes, servicios);
+            atenderPacientes(colaPacientes, servicios, historial);
 
         } else if (opcion == "2") {
             verDepartamentos(servicios);
 
         } else if (opcion == "3") {
-
+            revisarHistorial(historial);
 
         } else if (opcion == "4") {
+            cout << "Cerrando sistema...." << endl;
             break;
 
         } else {
@@ -152,6 +169,7 @@ int main() {
         }
 
     } while (opcion != "4");
+    delete historial;
     delete servicios;
     delete colaPacientes;
     return 0;

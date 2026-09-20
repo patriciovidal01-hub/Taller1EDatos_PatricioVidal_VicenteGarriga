@@ -15,7 +15,9 @@ class Stack {
     public:
         Stack();
         ~Stack();
+        void eliminarCabeza();
         void push(Nodo<Paciente>* nodo);
+        void mostrarHistorial() const;
 };
 
 
