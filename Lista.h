@@ -47,10 +47,11 @@ class Lista {
         }
 
         void eliminarPrimero() {
-            Nodo<T>* primero = cabeza;
-            cabeza = nullptr;
-            cabeza = primero->getSiguiente();
-            delete primero;
+            if (cabeza != nullptr) {
+                Nodo<T>* primero = cabeza;
+                cabeza = primero->getSiguiente();
+                delete primero;
+            }
         }
 };
 

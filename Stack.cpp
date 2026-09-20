@@ -3,3 +3,11 @@
 //
 
 #include "Stack.h"
+
+Stack::Stack() : atencionCabeza(nullptr){}
+Stack::~Stack(){}
+
+void Stack::push(Nodo<Paciente>* nodo) {
+    nodo->setSiguiente(atencionCabeza);
+    atencionCabeza = nodo;
+}
